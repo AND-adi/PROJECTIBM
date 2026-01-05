@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Digital Notice Board</title>
+    <link rel="stylesheet" href="DNB.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>📢 Digital Notice Board</h1>
+
+    <div class="input-box">
+        <input type="text" id="noticeInput" placeholder="Enter notice here">
+        <button id="addBtn" onclick="addNotice()">Add Notice</button>
+    </div>
+
+    <div id="noticeBoard"></div>
+</div>
+<div class="admin-bar">
+    <button onclick="adminLogin()">🔐 Admin Login</button>
+    <button onclick="adminLogout()" id="logoutBtn" style="display:none;">🚪 Logout</button>
+</div>
+
+<script src="DNB.js"></script>
+</body>
+</html>
