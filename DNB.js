@@ -128,5 +128,5 @@ function updateUI() {
 
     displayNotices();
 }
-
+let randomNum = 0;
 updateUI();
