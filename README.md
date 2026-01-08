@@ -4,14 +4,14 @@ Digital-Notice-Board/
 ├── DNB.css      # Styling, animations, UI effects
 ├── DNB.js       # App logic & admin controls
 
---<<Usage>>--
+--<< Usage >>--
 1.Type a notice into the input field
 2.Click “Add Notice”
 3.Notices appear as styled cards on the board
 4.Log in as admin to delete notices
 5.Log out to return to user mode
 
- -->>Features<<--
+ -->> Features <<--
  1.Add notices instantly
  2.Colorful paper-style notice cards
  3.Admin login & logout
