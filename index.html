@@ -5,23 +5,100 @@
     <title>Digital Notice Board</title>
     <link rel="stylesheet" href="DNB.css">
 </head>
-<body>
+<body data-theme="light">
 
-<div class="container">
-    <h1>📢 Digital Notice Board</h1>
+    <header class="site-header">
+        <div class="header-content">
+            <a href="#" class="logo" onclick="showView('user')">📌 Notice<span>Pro</span></a>
+            <div class="header-actions">
+                <button class="theme-switch" onclick="toggleTheme()" title="Toggle Theme">
+                    <svg id="theme-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+                </button>
+                <nav class="main-nav">
+                    <button id="userNavBtn" class="btn-toggle active" onclick="showView('user')">Board</button>
+                    <button id="adminNavBtn" class="btn-toggle" onclick="handleAdminNav()">Admin</button>
+                </nav>
+            </div>
+        </div>
+    </header>
 
-    <div class="input-box">
-        <input type="text" id="noticeInput" placeholder="Enter notice here">
-        <button id="addBtn" onclick="addNotice()">Add Notice</button>
+    <main>
+        <div class="container">
+            <!-- Admin Panel Section -->
+            <div id="adminPanel" class="admin-panel">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <h3 id="formTitle">Create Announcement</h3>
+                    <button onclick="logoutAdmin()" class="btn-logout">Logout</button>
+                </div>
+                <input type="hidden" id="editId">
+                <div class="form-group">
+                    <label style="font-size: 14px; font-weight: 600; margin-bottom: 5px; display: block;">Headline</label>
+                    <input type="text" id="titleInput" placeholder="Heading..." maxlength="50">
+                    <span id="titleCounter" class="char-count">0/50</span>
+                </div>
+                <div class="form-group">
+                    <label style="font-size: 14px; font-weight: 600; margin-bottom: 5px; display: block;">Content</label>
+                    <textarea id="contentInput" placeholder="Full message..." rows="3" maxlength="200"></textarea>
+                    <span id="contentCounter" class="char-count">0/200</span>
+                </div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 10px;">
+                    <select id="categoryInput">
+                        <option value="general">General</option>
+                        <option value="urgent">Urgent</option>
+                        <option value="event">Event</option>
+                    </select>
+                    <button class="btn-primary" id="submitBtn" onclick="handleNoticeSubmit()">🚀 Publish</button>
+                </div>
+                <button id="cancelBtn" onclick="resetForm()" style="display:none; width:100%; margin-top:15px; background:none; color:var(--text-muted); text-decoration:underline; font-size: 12px;">Discard Edit</button>
+            </div>
+
+            <!-- Public Tools -->
+            <div class="search-filter-bar">
+                <input type="text" id="searchInput" placeholder="🔍 Search notices..." oninput="renderNotices()">
+                <select id="filterSelect" onchange="renderNotices()">
+                    <option value="all">All Items</option>
+                    <option value="general">General</option>
+                    <option value="urgent">Urgent</option>
+                    <option value="event">Events</option>
+                </select>
+            </div>
+
+            <!-- List Area -->
+            <div id="noticeList" class="notice-list"></div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <p style="font-size: 13px; color: var(--text-muted);">&copy; 2026 Interactive Board Pro. Pwd: admin123</p>
+    </footer>
+
+    <!-- Feedback UI -->
+    <div id="toast">Action Successful!</div>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal-overlay">
+        <div class="modal">
+            <h2 style="margin-bottom: 10px;">Admin Login</h2>
+            <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 20px;">Enter password to manage notices</p>
+            <input type="password" id="passwordInput" placeholder="Password" class="password-field">
+            <div style="display:flex; gap:10px; justify-content:center;">
+                <button onclick="closeLogin()" style="background:var(--bg); color:var(--text-main)">Cancel</button>
+                <button onclick="verifyPassword()" style="background:var(--primary); color:white">Login</button>
+            </div>
+        </div>
     </div>
 
-    <div id="noticeBoard"></div>
-</div>
-<div class="admin-bar">
-    <button onclick="adminLogin()">🔐 Admin Login</button>
-    <button onclick="adminLogout()" id="logoutBtn" style="display:none;">🚪 Logout</button>
-</div>
-    <br>
+    <!-- Delete Confirmation -->
+    <div id="confirmModal" class="modal-overlay">
+        <div class="modal">
+            <h3 style="margin-bottom:15px">Delete Notice?</h3>
+            <p style="color:var(--text-muted); margin-bottom:25px; font-size: 14px;">This will remove the announcement permanently.</p>
+            <div style="display:flex; gap:10px; justify-content:center;">
+                <button onclick="closeDeleteModal()" style="background:var(--bg); color:var(--text-main)">Cancel</button>
+                <button id="confirmDeleteBtn" style="background:var(--danger); color:white">Delete</button>
+            </div>
+        </div>
+    </div>
 
 <script src="DNB.js"></script>
 </body>
