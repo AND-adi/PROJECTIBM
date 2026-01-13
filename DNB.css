@@ -201,7 +201,7 @@ html {
 
         /* --- 10. FOOTER --- */
         .site-footer {
-        ; padding: 30px; text-align: center;
+         padding: 30px; text-align: center;
             border-top: 1px solid var(--border); margin-top: auto;
         }
 
