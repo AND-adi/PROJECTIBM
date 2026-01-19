@@ -1,4 +1,4 @@
-Digital-Notice-Board/
+Digital-Notice-Board
 │
 ├── index.html   # Main application layout
 ├── DNB.css      # Styling, animations, UI effects
@@ -23,3 +23,7 @@ Digital-Notice-Board/
 --<([ Digital Notice Board ])>--
 A lightweight, front-end Digital Notice Board built with HTML, CSS, and Vanilla JavaScript.
 Users can post notices instantly, while admins can manage and delete notices—all wrapped in a modern glassmorphism UI with an animated parallax background.
+
+
+
+    
