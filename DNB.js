@@ -15,7 +15,7 @@
 
         let currentMode = 'user';
 
-        // --- 2. AUTHENTICATION LOGIC ---
+        // --- 2. AUTHENTICATION LOGIC --
 
         function handleAdminNav() {
             if (isAdminAuthenticated) {
